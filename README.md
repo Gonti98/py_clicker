@@ -13,7 +13,7 @@ Everything runs in terminal with **vimlike controls**.
 ## Quick Start
 
 ```bash
-git clone <repo> && cd py_clicker
+git clone git@github.com:Gonti98/py_clicker.git && cd py_clicker
 
 ./init.sh
 ```
