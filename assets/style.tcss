@@ -1,3 +1,23 @@
 Screen{
   border: white 10%;
 }
+
+Button {
+  border: round gray 50%;
+  background: gray 0%;
+}
+
+Button:focus {
+  border: round gray;
+  background: gray 0%;
+  text-style: underline;
+}
+
+#logo{
+  height: auto;
+  margin-bottom: 6;
+}
+
+#menu{
+  height: auto;
+}

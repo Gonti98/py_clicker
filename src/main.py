@@ -11,7 +11,6 @@ class MyGameApp(App):
     def on_mount(self) -> None:
         self.push_screen(MainMenu())
 
-
 if __name__ == "__main__":
     app = MyGameApp()
     app.run()
