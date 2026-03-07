@@ -3,7 +3,7 @@ from textual.containers import CenterMiddle
 from textual.widgets import Label, Footer
 from textual.reactive import reactive
 
-from src.utils.temp_save_load import TempSaveLoad
+from src.utils.temp_save_load import Temp
 
 class GameScreen(Screen):
     points: reactive[int] = reactive(0)
@@ -18,7 +18,7 @@ class GameScreen(Screen):
         yield Footer()
 
     def on_mount(self) -> None:
-        self.points = TempSaveLoad.load()
+        self.points = Temp.load()
 
     def watch_points(self, points: int):
         self.query_one("#counter", Label).update(f"Press SPACE ({points})")
@@ -27,5 +27,5 @@ class GameScreen(Screen):
         self.points += 1
 
     def action_press_escape(self) -> None:
-        TempSaveLoad.save(self.points)
+        Temp.save(self.points)
         self.app.pop_screen()

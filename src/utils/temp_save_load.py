@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 import tempfile
 
-class TempSave:
+class Temp:
     SAVE_FILE = Path(tempfile.gettempdir()) / "temp_save.json"
 
     @classmethod
