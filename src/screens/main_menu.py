@@ -7,6 +7,9 @@ from src.screens.game_screen import GameScreen
 from src.utils.temp_save_load import Temp
 
 class MainMenu(Screen):
+    def on_screen_resume(self) -> None:
+        self.refresh()
+
     def compose(self):
         yield Center(Label(TITLE_ASCII, id="logo"))
         yield CenterMiddle(
@@ -26,7 +29,7 @@ class MainMenu(Screen):
             case "continue":
                 self.app.notify("Continue!")
             case "start":
-                self.app.push_screen("Game")
+                self.app.switch_screen("Game")
             case "settings":
                 self.app.notify("Settings!")
             case _:

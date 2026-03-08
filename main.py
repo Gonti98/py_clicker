@@ -11,10 +11,10 @@ class MyGameApp(App):
     SCREENS = {
         "Menu": MainMenu,
         "Game": GameScreen,
-            }
+    }
 
-    def get_default_screen(self) -> Screen:
-        return MainMenu()
+    def on_mount(self) -> None:
+        self.push_screen(MainMenu())
 
 if __name__ == "__main__":
     app = MyGameApp()
