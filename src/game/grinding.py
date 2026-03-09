@@ -6,9 +6,9 @@ class Grind:
         self.income = income
         self.last_press = 0.0
 
-    def grind(self, points: int) -> int:
+    def grind(self, coins: int) -> int:
         now = time.time()
         if now - self.last_press < self.cooldown:
-            return points
+            return coins
         self.last_press = now
-        return points + self.income
+        return coins + self.income

@@ -6,7 +6,7 @@ from src.utils.temp_save_load import Temp
 from src.game.grinding import Grind
 
 class GameScreen(Screen):
-    points: reactive[int] = reactive(0)
+    coins: reactive[int] = reactive(0)
     grind: Grind = Grind(0.5, 1)
     BINDINGS = [
         ("space", "press_space", "to get coins"),
@@ -16,8 +16,8 @@ class GameScreen(Screen):
     ]
 
     # coins validate >= 0
-    def validate_points(self, points: int) -> int:
-        return max(0, points)
+    def validate_coins(self, coins: int) -> int:
+        return max(0, coins)
 
     def __init__(self, new_game: bool = True, **kwargs):
         super().__init__(**kwargs)
@@ -29,16 +29,16 @@ class GameScreen(Screen):
 
     def on_mount(self) -> None:
         if self.new_game:
-            self.points = 0
+            self.coins = 0
         else:
-            self.points = Temp.load()
+            self.coins = Temp.load()
 
-    def watch_points(self, points: str):
-        self.query_one("#counter", Digits).update(f"{points}")
+    def watch_coins(self, coins: str):
+        self.query_one("#counter", Digits).update(f"{coins}")
 
     def action_press_space(self):
-        self.points = self.grind.grind(self.points)
+        self.coins = self.grind.grind(self.coins)
 
     def action_press_escape(self) -> None:
-        Temp.save(self.points)
+        Temp.save(self.coins)
         self.app.switch_screen("Menu")
