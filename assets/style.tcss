@@ -13,6 +13,7 @@ Button:focus {
   text-style: underline;
 }
 
+/* MAIN MENU */
 #logo{
   margin-top: 1;
   height: auto;
@@ -23,6 +24,11 @@ Button:focus {
   height: auto;
 }
 
+/* GAME */
 #counter{
+  dock: top;
   height: auto;
+  width: 100%;
+  border: double blue 50%;
+  text-align: center;
 }
