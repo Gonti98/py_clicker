@@ -3,11 +3,13 @@ from textual.containers import Center, CenterMiddle
 from textual.widgets import Button, Label
 
 from assets.logo import TITLE_ASCII
+from src.config.bindings import BINDINGS
 from src.screens.game_screen import GameScreen
 from src.screens.settings_menu import SettingsMenu
 from src.utils.temp_save_load import Temp
 
 class MainMenu(Screen):
+    BINDINGS = BINDINGS["MainMenu"]
     def compose(self):
         yield Center(Label(TITLE_ASCII, id="logo"))
         yield CenterMiddle(

@@ -1,10 +1,10 @@
 from textual.screen import Screen
 from textual.widgets import Footer
 
+from src.config.bindings import BINDINGS
+
 class SettingsMenu(Screen):
-    BINDINGS = [
-        ("escape", "press_escape", "to main menu"),
-    ]
+    BINDINGS = BINDINGS["SettingsMenu"]
 
     def compose(self):
         yield Footer()

@@ -1,14 +1,17 @@
 from textual.app import App, ComposeResult
-from textual.widgets import Footer
 
-from src.screens.main_menu import MainMenu
+from src.config.bindings import BINDINGS
 
 class MyGameApp(App):
+    BINDINGS = BINDINGS["global"]
     CSS_PATH = "assets/style.tcss"
     COMMAND_PALETTE_BINDING = "question_mark"
     SCREENS = {
-        "Menu": MainMenu,
+    "Game": GameScreen,
+    "Menu": MainMenu,
+    "Settings": SettingsMenu,
     }
+
 
     def on_mount(self) -> None:
         self.push_screen("Menu")
