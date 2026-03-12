@@ -20,6 +20,7 @@ class MainMenu(Screen):
             Button("Quit", id="quit"),
             id="menu",
         )
+        yield Label("alfa 0.0.1", id="my_footer")
 
     def on_screen_resume(self) -> None:
         self.update_continue_button()

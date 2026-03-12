@@ -1,34 +1,47 @@
-Screen{
+MainMenu{
   border: white 10%;
 }
 
-Button {
-  border: round gray 50%;
-  background: gray 0%;
-}
-
-Button:focus {
-  border: round gray;
-  background: gray 0%;
-  text-style: underline;
-}
-
-/* MAIN MENU */
-#logo{
+MainMenu #logo{
   margin-top: 1;
   height: auto;
   margin-bottom: 6;
 }
 
-#menu{
+MainMenu #menu{
   height: auto;
 }
 
-/* GAME */
-#counter{
+MainMenu #my_footer{
+  height: auto;
+  width: 100%;
+  text-align: right;
+  dock: bottom;
+}
+
+MainMenu Button {
+  border: round gray 50%;
+  background: gray 0%;
+}
+
+MainMenu Button:focus {
+  border: round gray;
+  background: gray 0%;
+  text-style: underline;
+}
+
+GameScreen{
+  border: heavy red 50%;
+}
+
+GameScreen #counter{
   dock: top;
   height: auto;
   width: 100%;
   border: double blue 50%;
   text-align: center;
+}
+
+SettingsMenu{
+  border: heavy blue 50%;
 }

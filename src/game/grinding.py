@@ -6,9 +6,12 @@ class Grind:
         self.income = income
         self.last_press = 0.0
 
-    def grind(self, coins: int) -> int:
-        now = time.time()
-        if now - self.last_press < self.cooldown:
+    @property
+    def available(self) -> bool:
+        return time.time() - self.last_press >= self.cooldown
+
+    def click(self, coins: int) -> int:
+        if not self.available:
             return coins
-        self.last_press = now
+        self.last_press = time.time()
         return coins + self.income
