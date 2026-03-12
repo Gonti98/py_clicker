@@ -7,6 +7,7 @@ from src.config.bindings import BINDINGS
 from src.screens.game_screen import GameScreen
 from src.screens.settings_menu import SettingsMenu
 from src.utils.temp_save_load import Temp
+from src.utils.confirmation_modal import ConfirmationModal
 
 class MainMenu(Screen):
     BINDINGS = BINDINGS["MainMenu"]
@@ -38,10 +39,16 @@ class MainMenu(Screen):
             case "continue":
                 self.app.switch_screen(GameScreen(new_game=False))
             case "start_new_game":
-                self.app.switch_screen(GameScreen())
+                self.app.push_screen(
+                    ConfirmationModal("New Game?"),
+                    lambda result: self.app.switch_screen(GameScreen()) if result else None
+                )
             case "settings":
                 self.app.switch_screen(SettingsMenu())
             case "quit":
-                self.app.exit()
+                self.app.push_screen(
+                    ConfirmationModal("Napewno wyjść?"),
+                    lambda result: self.app.exit() if result else None
+                )
             case _:
                 self.app.notify(f"Error: {button_id}")

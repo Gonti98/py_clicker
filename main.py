@@ -8,7 +8,10 @@ from src.screens.settings_menu import SettingsMenu
 class MyGameApp(App):
     ESCAPE_TO_MINIMIZE = False
     NOTIFICATION_TIMEOUT = 2
-    CSS_PATH = "assets/style.tcss"
+    CSS_PATH = [
+        "assets/style.tcss",
+        "assets/confirmation_modal.tcss",
+    ]
     COMMAND_PALETTE_BINDING = "question_mark"
     BINDINGS = BINDINGS["global"]
     SCREENS = {
