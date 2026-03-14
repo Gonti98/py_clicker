@@ -6,7 +6,7 @@ from assets.logo import TITLE_ASCII
 from src.config.bindings import BINDINGS
 from src.screens.game_screen import GameScreen
 from src.screens.settings_menu import SettingsMenu
-from src.utils.temp_save_load import Temp
+from src.utils.save_manager import SaveManager
 from src.utils.confirmation_modal import ConfirmationModal
 
 class MainMenu(Screen):
@@ -27,7 +27,7 @@ class MainMenu(Screen):
         self.update_continue_button()
 
     def update_continue_button(self):
-        has_save = Temp.TEMP_SAVE_FILE.exists()
+        has_save = SaveManager.SAVE_GAME_FILE.exists()
         continue_btn = self.query_one("#continue", Button)
         continue_btn.disabled = not has_save
         if has_save:
@@ -40,8 +40,8 @@ class MainMenu(Screen):
                 self.app.switch_screen(GameScreen(new_game=False))
             case "start_new_game":
                 self.app.push_screen(
-                    ConfirmationModal("New Game?"),
-                    lambda result: self.app.switch_screen(GameScreen()) if result else None
+                    ConfirmationModal("Start New Game? This will overwrite save!"),
+                    lambda result: self.app.switch_screen(GameScreen(new_game=True)) if result else None
                 )
             case "settings":
                 self.app.switch_screen(SettingsMenu())

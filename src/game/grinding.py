@@ -45,3 +45,11 @@ class Grind:
             self.cooldown_upgrade_count += 1
             return coins - cost
         return coins
+
+    def to_dict(self) -> dict:
+        return {
+            "income_per_click": self.income_per_click,
+            "cooldown": self.cooldown,
+            "income_upgrade_count": self.income_upgrade_count,
+            "cooldown_upgrade_count": self.cooldown_upgrade_count,
+        }

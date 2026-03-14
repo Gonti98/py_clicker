@@ -11,13 +11,24 @@ class GameScreen(Screen):
     coins: reactive[int] = reactive(0)
     grind = Grind()
 
+    def __init__(self, new_game: bool = True, **kwargs):
+        super().__init__(**kwargs)
+        self.new_game = new_game
+
     def compose(self):
         yield Digits(id="counter")
         yield Label(id="info")
         yield Footer()
 
     def on_mount(self):
-        self.reset_game()
+        if self.new_game:
+            self.reset_game()
+        else:
+            loaded_coins = SaveManager.load_game()
+            if loaded_coins is not None:
+                self.coins = loaded_coins
+            else:
+                self.reset_game()
         self.watch_coins(self.coins)
 
     def reset_game(self):
@@ -40,4 +51,5 @@ class GameScreen(Screen):
         self.coins = self.grind.cooldown_upgrade(self.coins)
 
     def action_press_escape(self):
+        SaveManager.save_game(self.coins, self.grind)
         self.app.switch_screen("Menu")
